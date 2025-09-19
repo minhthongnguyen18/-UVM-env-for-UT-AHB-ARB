@@ -3,6 +3,7 @@ class ahb_err_rsp_2nd_cycle_test extends ahb_base_test;
   
   function new(string name = "ahb_err_rsp_2nd_cycle_test", uvm_component parent);
       super.new(name, parent);
+      uvm_config_db#(bit)::set(this, "*", "enable_err_cov", 1);
   endfunction
   
   task run_phase(uvm_phase phase);
@@ -18,7 +19,6 @@ class ahb_err_rsp_2nd_cycle_test extends ahb_base_test;
           ahb_sbus_err_rsp_2nd_cycle_seq sbus_seq;
           sbus_seq = ahb_sbus_err_rsp_2nd_cycle_seq::type_id::create("sbus_seq");
           // sbus_seq.num_trans=50;
-          @(posedge env.sbus_ag.vif.clk_i);  
           sbus_seq.start(env.sbus_ag.sequencer);
       end
     join_none

@@ -1,24 +1,25 @@
 # Begin_DVE_Session_Save_Info
 # DVE full session
-# Saved on Fri Aug 29 13:00:05 2025
+# Saved on Wed Sep 3 17:09:56 2025
 # Designs open: 1
 #   V1: dump.vpd
 # Toplevel windows open: 2
 # 	TopLevel.1
 # 	TopLevel.2
 #   Source.1: tb_top.dut
-#   Wave.1: 27 signals
-#   Group count = 3
+#   Wave.1: 40 signals
+#   Group count = 4
 #   Group Group1 signal count = 8
-#   Group Group2 signal count = 14
+#   Group Group2 signal count = 15
 #   Group Group3 signal count = 5
+#   Group Group4 signal count = 12
 # End_DVE_Session_Save_Info
 
 # DVE version: Q-2020.03-SP1-1_Full64
 # DVE build date: Jul 19 2020 21:06:08
 
 
-#<Session mode="Full" path="/shsv/cpu2/dcuss/user/thongnguyen/training/05_Mentor_Mentee/3355_thongminhnguyen/UVM/ahbarb_env_test_predictor/session.dump.vpd.tcl" type="Debug">
+#<Session mode="Full" path="/shsv/cpu2/dcuss/user/thongnguyen/training/05_Mentor_Mentee/3355_thongminhnguyen/UVM/ahbarb_env_test_predictor_trial/session.dump.vpd.tcl" type="Debug">
 
 gui_set_loading_session_type Post
 gui_continuetime_set
@@ -70,7 +71,7 @@ if {![gui_exist_window -window TopLevel.1]} {
 } else { 
     set TopLevel.1 TopLevel.1
 }
-gui_show_window -window ${TopLevel.1} -show_state normal -rect {{60 249} {1918 1191}}
+gui_show_window -window ${TopLevel.1} -show_state normal -rect {{84 342} {1939 1281}}
 
 # ToolBar settings
 gui_set_toolbar_attributes -toolbar {TimeOperations} -dock_state top
@@ -111,28 +112,28 @@ gui_hide_toolbar -toolbar {Testbench}
 # End ToolBar settings
 
 # Docked window settings
-set HSPane.1 [gui_create_window -type HSPane -parent ${TopLevel.1} -dock_state left -dock_on_new_line true -dock_extent 126]
+set HSPane.1 [gui_create_window -type HSPane -parent ${TopLevel.1} -dock_state left -dock_on_new_line true -dock_extent 123]
 catch { set Hier.1 [gui_share_window -id ${HSPane.1} -type Hier] }
-gui_set_window_pref_key -window ${HSPane.1} -key dock_width -value_type integer -value 126
+gui_set_window_pref_key -window ${HSPane.1} -key dock_width -value_type integer -value 123
 gui_set_window_pref_key -window ${HSPane.1} -key dock_height -value_type integer -value -1
 gui_set_window_pref_key -window ${HSPane.1} -key dock_offset -value_type integer -value 0
-gui_update_layout -id ${HSPane.1} {{left 0} {top 0} {width 125} {height 691} {dock_state left} {dock_on_new_line true} {child_hier_colhier 140} {child_hier_coltype 100} {child_hier_colpd 0} {child_hier_col1 0} {child_hier_col2 1} {child_hier_col3 -1}}
-set DLPane.1 [gui_create_window -type DLPane -parent ${TopLevel.1} -dock_state left -dock_on_new_line true -dock_extent 346]
+gui_update_layout -id ${HSPane.1} {{left 0} {top 0} {width 122} {height 691} {dock_state left} {dock_on_new_line true} {child_hier_colhier 140} {child_hier_coltype 100} {child_hier_colpd 0} {child_hier_col1 0} {child_hier_col2 1} {child_hier_col3 -1}}
+set DLPane.1 [gui_create_window -type DLPane -parent ${TopLevel.1} -dock_state left -dock_on_new_line true -dock_extent 343]
 catch { set Data.1 [gui_share_window -id ${DLPane.1} -type Data] }
-gui_set_window_pref_key -window ${DLPane.1} -key dock_width -value_type integer -value 346
+gui_set_window_pref_key -window ${DLPane.1} -key dock_width -value_type integer -value 343
 gui_set_window_pref_key -window ${DLPane.1} -key dock_height -value_type integer -value 694
 gui_set_window_pref_key -window ${DLPane.1} -key dock_offset -value_type integer -value 0
-gui_update_layout -id ${DLPane.1} {{left 0} {top 0} {width 345} {height 691} {dock_state left} {dock_on_new_line true} {child_data_colvariable 176} {child_data_colvalue 105} {child_data_coltype 76} {child_data_col1 0} {child_data_col2 1} {child_data_col3 2}}
+gui_update_layout -id ${DLPane.1} {{left 0} {top 0} {width 342} {height 691} {dock_state left} {dock_on_new_line true} {child_data_colvariable 176} {child_data_colvalue 105} {child_data_coltype 76} {child_data_col1 0} {child_data_col2 1} {child_data_col3 2}}
 set Console.1 [gui_create_window -type Console -parent ${TopLevel.1} -dock_state bottom -dock_on_new_line true -dock_extent 177]
 gui_set_window_pref_key -window ${Console.1} -key dock_width -value_type integer -value -1
 gui_set_window_pref_key -window ${Console.1} -key dock_height -value_type integer -value 177
 gui_set_window_pref_key -window ${Console.1} -key dock_offset -value_type integer -value 0
-gui_update_layout -id ${Console.1} {{left 0} {top 0} {width 247} {height 179} {dock_state bottom} {dock_on_new_line true}}
-set DriverLoad.1 [gui_create_window -type DriverLoad -parent ${TopLevel.1} -dock_state bottom -dock_on_new_line false -dock_extent 180]
+gui_update_layout -id ${Console.1} {{left 0} {top 0} {width 247} {height 176} {dock_state bottom} {dock_on_new_line true}}
+set DriverLoad.1 [gui_create_window -type DriverLoad -parent ${TopLevel.1} -dock_state bottom -dock_on_new_line false -dock_extent 177]
 gui_set_window_pref_key -window ${DriverLoad.1} -key dock_width -value_type integer -value 150
-gui_set_window_pref_key -window ${DriverLoad.1} -key dock_height -value_type integer -value 180
+gui_set_window_pref_key -window ${DriverLoad.1} -key dock_height -value_type integer -value 177
 gui_set_window_pref_key -window ${DriverLoad.1} -key dock_offset -value_type integer -value 0
-gui_update_layout -id ${DriverLoad.1} {{left 0} {top 0} {width 1610} {height 179} {dock_state bottom} {dock_on_new_line false}}
+gui_update_layout -id ${DriverLoad.1} {{left 0} {top 0} {width 1607} {height 176} {dock_state bottom} {dock_on_new_line false}}
 #### Start - Readjusting docked view's offset / size
 set dockAreaList { top left right bottom }
 foreach dockArea $dockAreaList {
@@ -169,7 +170,7 @@ if {![gui_exist_window -window TopLevel.2]} {
 } else { 
     set TopLevel.2 TopLevel.2
 }
-gui_show_window -window ${TopLevel.2} -show_state normal -rect {{8 54} {1867 1181}}
+gui_show_window -window ${TopLevel.2} -show_state normal -rect {{0 23} {1919 1151}}
 
 # ToolBar settings
 gui_set_toolbar_attributes -toolbar {TimeOperations} -dock_state top
@@ -217,7 +218,7 @@ gui_sync_global -id ${TopLevel.2} -option true
 # MDI window settings
 set Wave.1 [gui_create_window -type {Wave}  -parent ${TopLevel.2}]
 gui_show_window -window ${Wave.1} -show_state maximized
-gui_update_layout -id ${Wave.1} {{show_state maximized} {dock_state undocked} {dock_on_new_line false} {child_wave_left 540} {child_wave_right 1314} {child_wave_colname 267} {child_wave_colvalue 269} {child_wave_col1 0} {child_wave_col2 1}}
+gui_update_layout -id ${Wave.1} {{show_state maximized} {dock_state undocked} {dock_on_new_line false} {child_wave_left 558} {child_wave_right 1356} {child_wave_colname 276} {child_wave_colvalue 278} {child_wave_col1 0} {child_wave_col2 1}}
 
 # End MDI window settings
 
@@ -268,13 +269,19 @@ set _session_group_2 Group2
 gui_sg_create "$_session_group_2"
 set Group2 "$_session_group_2"
 
-gui_sg_addsignal -group "$_session_group_2" { tb_top.dut.sbus_haddr_s_i tb_top.dut.sbus_htrans_s_i tb_top.dut.sbus_hsel_s_i tb_top.dut.sbus_hready_s_i tb_top.dut.sbus_hauser_s_i tb_top.dut.mode_sbus_require_dbgpriv_i tb_top.dut.sbus_hwrite_s_i tb_top.dut.sbus_hwdata_s_i tb_top.dut.sbus_hrdata_s_o tb_top.dut.sbus_hready_s_o tb_top.dut.sbus_hresp_s_o tb_top.dut.te_req tb_top.dut.sbus_req tb_top.dut.skid_state }
+gui_sg_addsignal -group "$_session_group_2" { tb_top.dut.sbus_haddr_s_i tb_top.dut.sbus_htrans_s_i tb_top.dut.sbus_hsel_s_i tb_top.dut.sbus_hready_s_i tb_top.dut.sbus_hsize_s_i tb_top.dut.sbus_hauser_s_i tb_top.dut.mode_sbus_require_dbgpriv_i tb_top.dut.sbus_hwrite_s_i tb_top.dut.sbus_hwdata_s_i tb_top.dut.sbus_hrdata_s_o tb_top.dut.sbus_hready_s_o tb_top.dut.sbus_hresp_s_o tb_top.dut.te_req tb_top.dut.sbus_req tb_top.dut.skid_state }
 
 set _session_group_3 Group3
 gui_sg_create "$_session_group_3"
 set Group3 "$_session_group_3"
 
 gui_sg_addsignal -group "$_session_group_3" { tb_top.dut.TRAM_CE tb_top.dut.TRAM_BWE tb_top.dut.TRAM_A tb_top.dut.TRAM_D tb_top.dut.TRAM_Q }
+
+set _session_group_4 Group4
+gui_sg_create "$_session_group_4"
+set Group4 "$_session_group_4"
+
+gui_sg_addsignal -group "$_session_group_4" { tb_top.dut.skid_state tb_top.dut.skid_enable tb_top.dut.skbf_size tb_top.dut.skbf_write tb_top.dut.skbf_auser tb_top.dut.skbf_addr tb_top.dut.ahb_size tb_top.dut.ahb_write tb_top.dut.ahb_auser tb_top.dut.ahb_addr tb_top.dut.ahb_addr_q tb_top.dut.ahb_bwe }
 
 # Global: Highlighting
 gui_highlight_signals -color #00ff00 {{tb_top.dut.sbus_htrans_s_i[1:0]}}
@@ -285,7 +292,7 @@ gui_change_stack_mode -mode list
 # Post database loading setting...
 
 # Restore C1 time
-gui_set_time -C1_only 920
+gui_set_time -C1_only 300
 
 
 
@@ -320,11 +327,14 @@ gui_list_set_filter -id ${Data.1} -list { {Buffer 1} {Input 1} {Others 1} {Linka
 gui_list_set_filter -id ${Data.1} -text {*}
 gui_list_show_data -id ${Data.1} {tb_top.dut}
 gui_show_window -window ${Data.1}
-catch { gui_list_select -id ${Data.1} {tb_top.dut.te_hready_s_i }}
-gui_view_scroll -id ${Data.1} -vertical -set 120
+catch { gui_list_select -id ${Data.1} {tb_top.dut.sbus_hsize_s_i }}
+gui_view_scroll -id ${Data.1} -vertical -set 265
 gui_view_scroll -id ${Data.1} -horizontal -set 0
 gui_view_scroll -id ${Hier.1} -vertical -set 0
 gui_view_scroll -id ${Hier.1} -horizontal -set 0
+
+# DriverLoad 'DriverLoad.1'
+gui_get_drivers -session -id ${DriverLoad.1} -signal tb_top.dut.sbus_req -time 885 -starttime 920
 
 # Source 'Source.1'
 gui_src_value_annotate -id ${Source.1} -switch false
@@ -344,11 +354,12 @@ gui_list_set_height -id Wave -height 25
 set origGroupCreationState [gui_list_create_group_when_add -wave]
 gui_list_create_group_when_add -wave -disable
 gui_marker_set_ref -id ${Wave.1}  C1
-gui_wv_zoom_timerange -id ${Wave.1} 888 972
+gui_wv_zoom_timerange -id ${Wave.1} 218 391
 gui_list_add_group -id ${Wave.1} -after {New Group} {Group1}
 gui_list_add_group -id ${Wave.1} -after {New Group} {Group2}
 gui_list_add_group -id ${Wave.1} -after {New Group} {Group3}
-gui_list_select -id ${Wave.1} {tb_top.dut.sbus_hready_s_i }
+gui_list_add_group -id ${Wave.1} -after {New Group} {Group4}
+gui_list_select -id ${Wave.1} {tb_top.dut.sbus_hsize_s_i }
 gui_seek_criteria -id ${Wave.1} {Any Edge}
 
 
@@ -364,14 +375,11 @@ if { $groupExD } {
 }
 gui_list_set_filter -id ${Wave.1} -list { {Buffer 1} {Input 1} {Others 1} {Linkage 1} {Output 1} {Parameter 1} {All 1} {Aggregate 1} {LibBaseMember 1} {Event 1} {Assertion 1} {Constant 1} {Interface 1} {BaseMembers 1} {Signal 1} {$unit 1} {Inout 1} {Variable 1} }
 gui_list_set_filter -id ${Wave.1} -text {*}
-gui_list_set_insertion_bar  -id ${Wave.1} -group Group2  -item tb_top.dut.sbus_hready_s_i -position below
+gui_list_set_insertion_bar  -id ${Wave.1} -group Group2  -item {tb_top.dut.sbus_hsize_s_i[2:0]} -position below
 
-gui_marker_move -id ${Wave.1} {C1} 920
-gui_view_scroll -id ${Wave.1} -vertical -set 0
+gui_marker_move -id ${Wave.1} {C1} 300
+gui_view_scroll -id ${Wave.1} -vertical -set 172
 gui_show_grid -id ${Wave.1} -enable false
-
-# DriverLoad 'DriverLoad.1'
-gui_get_drivers -session -id ${DriverLoad.1} -signal tb_top.dut.sbus_req -time 885 -starttime 920
 # Restore toplevel window zorder
 # The toplevel window could be closed if it has no view/pane
 if {[gui_exist_window -window ${TopLevel.1}]} {

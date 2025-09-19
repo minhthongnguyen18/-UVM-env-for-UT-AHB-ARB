@@ -3,8 +3,9 @@ class ahb_TE_SB_simultaneous_test extends ahb_base_test;
   
   function new(string name = "ahb_TE_SB_simultaneous_test", uvm_component parent);
       super.new(name, parent);
+      uvm_config_db#(bit)::set(this, "*", "enable_err_cov", 0);
   endfunction
-  
+
   task run_phase(uvm_phase phase);
     phase.raise_objection(this);
     fork

@@ -424,6 +424,7 @@ module trc_ahbarb #(
                 begin
                     sbus_hready_s_o = 1'b1;
                     sbus_hresp_s_o = 1'b0;
+                    // sbus_hresp_s_o = 1'b1;
                     TRAM_CE = 1'b1;
                     TRAM_BWE = ahb_bwe_q;
                     TRAM_D = sbus_hwdata_s_i;

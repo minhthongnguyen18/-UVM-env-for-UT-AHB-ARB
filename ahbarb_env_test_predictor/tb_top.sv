@@ -75,7 +75,13 @@ module tb_top;
         .TRAM_Q             (ahb_interface.TRAM_Q)
     );
     
-    assign ahb_interface.state_i = dut.state;
+    assign ahb_interface.state_i     = dut.state      ;
+    assign ahb_interface.skid_state  = dut.skid_state ;
+    assign ahb_interface.skid_enable = dut.skid_enable;
+    assign ahb_interface.skbf_size   = dut.skbf_size  ;
+    assign ahb_interface.skbf_write  = dut.skbf_write ;
+    assign ahb_interface.skbf_auser  = dut.skbf_auser ;
+    assign ahb_interface.skbf_addr   = dut.skbf_addr  ;
     // UVM testbench
     initial begin
         // Store interface in config database
@@ -83,6 +89,7 @@ module tb_top;
         // Run the test
         run_test();
     end
+
     initial begin
         $vcdplusfile ("dump.vpd");
         $vcdpluson ();

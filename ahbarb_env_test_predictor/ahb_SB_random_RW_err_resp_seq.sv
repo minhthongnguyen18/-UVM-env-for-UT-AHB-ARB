@@ -14,10 +14,8 @@ class ahb_SB_random_RW_err_resp_seq extends ahb_base_sequence;
             req = ahb_transaction::type_id::create("req");
             assert(req.randomize() with {
                 src_i == SRC_SBUS;
-                // sbus_htrans dist {0:/50, 2:/50};
-                sbus_htrans == HTRANS_IDLE;
+                sbus_htrans dist {HTRANS_IDLE:/50, HTRANS_NONSEQ:/50};
                 sbus_hauser == 0;
-                sbus_hsel   == 0;
                 sbus_hsize inside {0,1,2,3};
                 mode_sbus == 1;
                 sbus_haddr inside {[0:1023]};

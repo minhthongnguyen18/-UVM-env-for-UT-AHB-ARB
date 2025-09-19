@@ -42,10 +42,8 @@ class sbus_agent extends uvm_agent;
     virtual ahb_if  vif;
     sbus_driver    driver;
     sbus_monitor   monitor;
-    sbus_monitor_2 monitor_2;
     sbus_sequencer sequencer;
     
-    uvm_analysis_port#(ahb_transaction) ap;
     uvm_analysis_port#(ahb_transaction) ap;
     
     `uvm_component_utils(sbus_agent)
@@ -58,7 +56,6 @@ class sbus_agent extends uvm_agent;
         super.build_phase(phase);
         
         monitor = sbus_monitor::type_id::create("monitor", this);
-        monitor_2 = sbus_monitor_2::type_id::create("monitor_2", this);
         ap      = new("ap", this);
         
         if (get_is_active() == UVM_ACTIVE) begin
@@ -69,13 +66,11 @@ class sbus_agent extends uvm_agent;
             `uvm_fatal("SBUS AGENT", "SBUS Virtual Interface not found");
         driver.vif  = vif;
         monitor.vif = vif;
-        monitor_2.vif = vif;
     endfunction
     
     function void connect_phase(uvm_phase phase);
         super.connect_phase(phase);
         monitor.ap.connect(ap);
-        monitor_2.ap.connect(ap);
         if (get_is_active() == UVM_ACTIVE) begin
             driver.seq_item_port.connect(sequencer.seq_item_export);
         end

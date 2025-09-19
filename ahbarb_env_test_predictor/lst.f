@@ -10,7 +10,6 @@ ahb_agent.sv
 ahb_base_sequence.sv
 ahb_TE_random_write_seq.sv
 ahb_SB_random_RW_seq.sv
-#ahb_TE_SB_random_seq.sv
 ahb_SB_random_RW_err_resp_seq.sv
 ahb_sbus_err_rsp_2nd_cycle_seq.sv
 ahb_te_err_rsp_2nd_cycle_seq.sv
@@ -20,7 +19,6 @@ ahb_env.sv
 ahb_base_test.sv
 ahb_TE_random_write_test.sv
 ahb_SB_random_RW_test.sv
-#ahb_TE_SB_random_test.sv
 ahb_TE_SB_simultaneous_test.sv
 ahb_err_rsp_2nd_cycle_test.sv
 ahb_SB_random_RW_err_resp_test.sv

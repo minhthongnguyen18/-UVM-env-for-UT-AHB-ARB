@@ -1,29 +1,80 @@
 class ahb_sbus_err_rsp_2nd_cycle_seq extends ahb_base_sequence;
-  int num_trans = 50;
-    int cnt = 0;
+  int num_trans = 50000;
+  int cnt;
+  logic  [1:0] prev_sbus_htrans;
     `uvm_object_utils(ahb_sbus_err_rsp_2nd_cycle_seq)
     
     function new(string name = "ahb_sbus_err_rsp_2nd_cycle_seq");
         super.new(name);
+        cnt = 0;
+        prev_sbus_htrans = HTRANS_IDLE;
     endfunction
 
     task body();
        ahb_transaction req;
        repeat(num_trans) begin
             req = ahb_transaction::type_id::create("req");
-            assert(req.randomize() with {
-                src_i == SRC_SBUS;
-                sbus_htrans dist {0:=20, 2:=80};
-                sbus_hsize inside {0,1,2,3};
-                sbus_hauser == 1'b0;
-                sbus_hwrite == 1'b1;
-                sbus_haddr inside {[0:1023]};
-            });
+            case (cnt)
+                0: begin
+                    assert(req.randomize() with { 
+                        src_i           == SRC_SBUS;
+                        sbus_htrans     == HTRANS_IDLE;
+                        mode_sbus       == 1'b1;
+                    });
+                end
+                1: begin
+                    assert(req.randomize() with { 
+                        src_i           == SRC_SBUS;
+                        sbus_htrans     == HTRANS_NONSEQ; 
+                        sbus_hsel       == 1'b1;
+                        sbus_hready_i   == 1'b1;
+                        sbus_hwrite     == 1'b1;
+                        sbus_hauser     == 1'b0;
+                        sbus_hsize      == 3'h2;
+                        mode_sbus       == 1'b1;
+                    });
+                end
+                2: begin
+                    assert(req.randomize() with { 
+                        src_i           == SRC_SBUS;
+                        sbus_htrans     == HTRANS_IDLE;
+                        mode_sbus       == 1'b1;
+                    });
+                end
+                3: begin
+                    assert(req.randomize() with { 
+                        src_i           == SRC_SBUS;
+                        sbus_htrans     == HTRANS_NONSEQ; 
+                        sbus_hsel       == 1'b1;
+                        sbus_hready_i   == 1'b1;
+                        sbus_hwrite     == 1'b1;
+                        sbus_hauser     == 1'b0;
+                        sbus_hsize      == 3'h2;
+                        mode_sbus       == 1'b0;
+                    });
+                end
+                4,5,6: begin
+                    assert(req.randomize() with { 
+                        src_i           == SRC_SBUS;
+                        sbus_htrans     == HTRANS_IDLE; 
+                        mode_sbus       == 1'b0;
+                    });
+                end
+                default: begin
+                    assert(req.randomize() with {
+                        src_i == SRC_SBUS;
+                        sbus_hauser == 1'b0;
+                        // sbus_hsize inside {0,2};
+                        sbus_htrans != prev_sbus_htrans; 
+                        mode_sbus == 1'b1;
+                    });
+                end
+            endcase
+            
             start_item(req);
             finish_item(req);
-            // cnt++;
-            // if (cnt >= num_trans)
-                // break;
+            cnt++;
+            prev_sbus_htrans = req.sbus_htrans;
        end
     endtask
 endclass
