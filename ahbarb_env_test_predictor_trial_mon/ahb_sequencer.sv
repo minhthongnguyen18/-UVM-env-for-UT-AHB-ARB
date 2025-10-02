@@ -15,3 +15,7 @@ class sbus_sequencer extends uvm_sequencer#(ahb_transaction);
         super.new(name, parent);
     endfunction
 endclass
+
+class coverage_control;
+  static uvm_event reach_cov_event = new("reach_cov_event");
+endclass

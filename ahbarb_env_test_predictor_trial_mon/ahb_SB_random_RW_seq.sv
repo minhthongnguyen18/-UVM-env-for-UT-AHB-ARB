@@ -2,7 +2,7 @@ class ahb_SB_random_RW_seq extends ahb_base_sequence;
   int num_trans = 10000;
   int    cnt = 0;
   logic  [1:0] prev_sbus_htrans;
-    `uvm_object_utils(ahb_SB_random_RW_seq)
+  `uvm_object_utils(ahb_SB_random_RW_seq)
     
     function new(string name = "ahb_SB_random_RW_seq");
         super.new(name);
@@ -11,7 +11,8 @@ class ahb_SB_random_RW_seq extends ahb_base_sequence;
 
     task body();
        ahb_transaction req;
-       repeat(num_trans) begin
+    //    repeat(num_trans) begin
+       while (1) begin
             req = ahb_transaction::type_id::create("req");
             assert(req.randomize() with {
                 src_i == SRC_SBUS;
@@ -26,8 +27,11 @@ class ahb_SB_random_RW_seq extends ahb_base_sequence;
             finish_item(req);
             cnt++;
             prev_sbus_htrans = req.sbus_htrans;
-            //if (cnt == 100)
-            //    break;
+            if (coverage_control::reach_cov_event.is_on()) begin
+              `uvm_info("SEQ", "Coverage reached. Stopping sequence.", UVM_LOW)
+              break;
+            end
        end
+       $display("====> SB cnt[%d] \n",cnt);
     endtask
 endclass

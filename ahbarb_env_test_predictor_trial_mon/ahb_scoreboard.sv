@@ -208,8 +208,8 @@ class ahb_scoreboard extends uvm_scoreboard;
             
             `uvm_info(get_type_name(), "=== CHECK READ/WRITE SRAM BY SBUS ===", UVM_LOW)
             `uvm_info(get_type_name(), 
-                $sformatf("Inputs: SBUS_REQ(haddr=0x%08h,hwrite=%b,hsize=%0d,htrans=%0d,hsel=%b,hwdata=0x%08h, Q=0x%08h)",
-                actual.sbus_haddr, actual.sbus_hwrite, actual.sbus_hsize, actual.sbus_htrans, actual.sbus_hsel, actual.sbus_hwdata, actual.sram_rdata), 
+                $sformatf("Inputs: SBUS_REQ(haddr=0x%08h,hwrite=%b,hsize=%0d,htrans=%0d,hsel=%b, hready_i=%0b, hwdata=0x%08h, Q=0x%08h)",
+                actual.sbus_haddr, actual.sbus_hwrite, actual.sbus_hsize, actual.sbus_htrans, actual.sbus_hsel, actual.sbus_hready_i, actual.sbus_hwdata, actual.sram_rdata), 
                 UVM_LOW)
             `uvm_info(get_type_name(), 
                 $sformatf("SRAM: CE=%b/%b BWE=0x%h/0x%h A=0x%03h/0x%03h D=0x%08h/0x%08h",
@@ -341,7 +341,15 @@ class ahb_scoreboard extends uvm_scoreboard;
             err_check_cg.sample();
             cov_res = err_check_cg.get_coverage();
         end
-        
+
+        if (cov_res == 100) begin
+            coverage_control::reach_cov_event.trigger();
+            $display("Coverage reached: %d \n",cov_res);
+        end
+        else begin
+            $display("Coverage unreached: %d \n",cov_res);
+        end
+
     endfunction
 
     // Report phase - final summary
@@ -351,7 +359,7 @@ class ahb_scoreboard extends uvm_scoreboard;
         print_progress_summary();
         
         `uvm_info(get_type_name(), "========== FINAL VERIFICATION REPORT ==========", UVM_LOW)
-        `uvm_info(get_type_name(), $sformatf("Coverage: %.2f%%", cov_res), UVM_LOW)
+        `uvm_info(get_type_name(), $sformatf("Functional Coverage: %.2f%%", cov_res), UVM_LOW)
         `uvm_info(get_type_name(), $sformatf("Total Scenarios: %0d", total_scenarios), UVM_LOW)
         `uvm_info(get_type_name(), $sformatf("TE Scenarios: %0d", TE_scenarios), UVM_LOW)
         `uvm_info(get_type_name(), $sformatf("SB Scenarios: %0d", SB_scenarios), UVM_LOW)

@@ -12,7 +12,8 @@ class ahb_sbus_err_rsp_2nd_cycle_seq extends ahb_base_sequence;
 
     task body();
        ahb_transaction req;
-       repeat(num_trans) begin
+    //    repeat(num_trans) begin
+       while(1) begin
             req = ahb_transaction::type_id::create("req");
             case (cnt)
                 0: begin
@@ -74,6 +75,10 @@ class ahb_sbus_err_rsp_2nd_cycle_seq extends ahb_base_sequence;
             finish_item(req);
             cnt++;
             prev_sbus_htrans = req.sbus_htrans;
+            if (coverage_control::reach_cov_event.is_on()) begin
+              `uvm_info("SEQ", "Coverage reached. Stopping sequence.", UVM_LOW)
+              break;
+            end
        end
     $display("====> cnt[%d] \n",cnt);
     endtask

@@ -12,7 +12,8 @@ class ahb_TE_random_write_seq extends ahb_base_sequence;
 
     task body();
        ahb_transaction req;
-       repeat(num_trans) begin
+    //    repeat(num_trans) begin
+        while (1) begin
             req = ahb_transaction::type_id::create("req");
             //Randomize generate stimuli
             assert(req.randomize() with {
@@ -24,8 +25,14 @@ class ahb_TE_random_write_seq extends ahb_base_sequence;
             });
             start_item(req);
             finish_item(req);
+            cnt++;
             prev_te_htrans = req.te_htrans;
+            if (coverage_control::reach_cov_event.is_on()) begin
+              `uvm_info("SEQ", "Coverage reached. Stopping sequence.", UVM_LOW)
+              break;
+            end
         end
+        $display("====> TE cnt[%d] \n",cnt);
     endtask
 endclass
 
