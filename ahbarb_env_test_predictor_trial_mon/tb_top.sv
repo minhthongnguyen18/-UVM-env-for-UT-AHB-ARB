@@ -90,8 +90,8 @@ module tb_top;
         run_test();
     end
 
-    initial begin
-        $vcdplusfile ("dump.vpd");
-        $vcdpluson ();
-    end
+    // initial begin
+    //     $vcdplusfile ("dump.vpd");
+    //     $vcdpluson ();
+    // end
 endmodule

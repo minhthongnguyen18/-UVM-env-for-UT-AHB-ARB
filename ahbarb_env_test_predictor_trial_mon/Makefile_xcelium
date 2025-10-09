@@ -1,0 +1,32 @@
+
+SHELL := /bin/bash
+# Environment setup
+XRUN = bs -os RHEL7 -M 8000  -source /common/appl/Env/Cadence/XCELIUM24.09.048
+IMC  = bs -os RHEL7 -M 16000 -source /common/appl/Env/Cadence/cadence.CSHRC_VMANAGERMAIN24.03.002:/common/appl/Env/Cadence/XCELIUM24.09.048
+
+UVM_VERBOSITY = UVM_MEDIUM
+# TEST = apb_random_test
+FILELIST = lst.f
+TESTLIST = testlist.f
+SEED = 12345678
+
+all: clean run cov
+
+run:
+	$(XRUN) xrun -64bit -sv -uvmhome /common/appl/Cadence/XCELIUM24.09.048/tools/methodology/UVM/CDNS-1.2 -access +rwc -coverage all -cov_cgsample -svseed random -f $(FILELIST) -define TEST=$(TEST) -define SVA=$(SVA) +UVM_VERBOSITY=$(UVM_VERBOSITY) +UVM_NO_RELNOTES +UVM_TESTNAME=$(TEST) +UVM_TIMEOUT=1000000 -l run.log
+
+clean:
+	rm -rf INCA_libs *.log *.key *.shm *.vpd *.fsdb *.h xcelium.d *.history cov_work *.ucdb *.vdb *covReport
+
+run_filelist:
+	@echo "Running all tests from $(TESTLIST)"
+	@for test in $$(cat $(TESTLIST)); do \
+		echo "Running $$test..."; \
+		$(XRUN) -coverage all -cov_cgsample -svseed random -f $(FILELIST) -define TEST=$$test -define SVA=$$test +UVM_VERBOSITY=$(UVM_VERBOSITY) +UVM_NO_RELNOTES +UVM_TESTNAME=$$test +UVM_TIMEOUT=1000000 -l run_$$test.log || exit 1; \
+	done
+
+regression: clean run_filelist
+
+cov: 
+	$(IMC) imc -gui
+
